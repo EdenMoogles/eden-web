@@ -48,12 +48,16 @@ const Itemsearch = ({ history, itemname, itemstack }) => {
 
         setLoading(true);
         apiUtil.get({ url: `api/v1/items/${item}`, json: true }, (error, data) => {
-            history.push(`/tools?item=${encodeURIComponent(data.key)}&stack=${stack}`);
-            setTotal(0);
-            setResults([]);
-            setItem(data);
-            setSearch(data.name);
-            setLoading(false);
+            if (error) {
+                console.error(error);
+            } else {
+                history.push(`/tools?item=${encodeURIComponent(data.key)}&stack=${stack}`);
+                setTotal(0);
+                setResults([]);
+                setItem(data);
+                setSearch(data.name);
+                setLoading(false);
+            }
         });
     }
 

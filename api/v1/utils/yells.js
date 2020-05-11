@@ -68,6 +68,7 @@ const getYells = async (query, limit = 30) => {
             message: parseMessage(row.message.toString('hex').toUpperCase(), lists.items),
         }));
     } catch (error) {
+        console.error(error);
         return [];
     }
 };

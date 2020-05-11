@@ -18,6 +18,7 @@ router.get('/status', (req, res) => {
             res.status(404).send();
         });
     } catch (error) {
+        console.error(error);
         res.status(404).send();
     }
 });

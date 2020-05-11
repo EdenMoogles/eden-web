@@ -49,12 +49,16 @@ const Playersearch = ({ history, charname }) => {
             url: `api/v1/chars/${player}`,
             json: true,
         }, (error, data) => {
-            history.push(`/tools?player=${player}`);
-            setTotal(0);
-            setResults([]);
-            setPlayer(data);
-            setSearch(data.name);
-            setLoading(false);
+            if (error) {
+                console.error(error);
+            } else {
+                history.push(`/tools?player=${player}`);
+                setTotal(0);
+                setResults([]);
+                setPlayer(data);
+                setSearch(data.name);
+                setLoading(false);
+            }
         });
     }
 

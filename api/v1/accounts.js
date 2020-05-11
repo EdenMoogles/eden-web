@@ -42,6 +42,7 @@ router.get('/profile', validate, async (req, res) => {
             profile: Object.assign({ id, login, email, timecreate, timelastmodify }, { chars }),
         });
     } catch (error) {
+        console.error(error);
         res.status(500).send();
     }
 });
@@ -181,6 +182,7 @@ router.post('/login', async (req, res) => {
             res.status(401).send();
         }
     } catch (error) {
+        console.log(error);
         res.status(500).send();
     }
 });

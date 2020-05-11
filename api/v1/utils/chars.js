@@ -123,6 +123,7 @@ const getCharCrafts = async (query, charid) => {
         });
         return crafts;
     } catch (error) {
+        console.error(error);
         return {};
     }
 };
@@ -135,6 +136,7 @@ const getCharAH = async (query, charname, limit = 10) => {
             WHERE sell_date != 0 AND (seller_name = ? OR buyer_name = ?) ORDER BY sell_date DESC LIMIT ?;`;
         return await query(statement, [charname, charname, limit]);
     } catch (error) {
+        console.error(error);
         return [];
     }
 };
@@ -148,6 +150,7 @@ const getCharBazaar = async (query, charname) => {
             WHERE bazaar != 0 AND charname = ? ORDER BY b.name ASC`;
         return await query(statement, [charname]);
     } catch (error) {
+        console.error(error);
         return [];
     }
 };
@@ -216,6 +219,7 @@ const getCharEquip = async (query, charname) => {
         const response = await query(statement, [charname]);
         return mapEquipToObject(response);
     } catch (error) {
+        console.error(error);
         return {};
     }
 };
@@ -276,6 +280,7 @@ const getCharData = async (query, charname) => {
             return null;
         }
     } catch (error) {
+        console.error(error);
         return {};
     }
 };
@@ -307,6 +312,7 @@ const fetchChars = async (query, {
             })),
         };
     } catch (error) {
+        console.error(error);
         return { total: 0, chars: [] };
     }
 };
