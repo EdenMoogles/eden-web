@@ -60,6 +60,7 @@ router.post('/register', (req, res) => {
         confirmPassword,
         confirmEmail,
         verify,
+        code,
     } = req.body;
 
     /** common origins attemping to register
@@ -87,13 +88,15 @@ router.post('/register', (req, res) => {
                 },
             });
         } else {
-            // All pre-tests have passed. Validate the Recaptcha3.
-            request({
-                    url: `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${verify}&remoteip=${req.headers['x-forwarded-for']}`,
-                    method: 'POST',
-                    body: {},
-                    json: true,
-                },
+            request(
+
+                // All pre-tests have passed. Validate the Recaptcha3.
+                /*  request({
+                          url: `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${verify}&remoteip=${req.headers['x-forwarded-for']}`,
+                          method: 'POST',
+                          body: {},
+                          json: true,
+                      },*/
                 async(error, resp) => {
                     if (error) {
                         return res.json({
