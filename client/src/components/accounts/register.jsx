@@ -19,6 +19,7 @@ export default ({ error, register, changePage, verify, verified }) => {
   const username = useField('Username');
   const password = useField('Password');
   const email = useField('Email');
+  const code = useField('code');
   const confirmUsername = useField('Confirm Username');
   const confirmPassword = useField('Confirm Password');
   const confirmEmail = useField('Confirm Email');
@@ -29,6 +30,7 @@ export default ({ error, register, changePage, verify, verified }) => {
     confirmUsername,
     confirmPassword,
     confirmEmail,
+    code,
   };
 
   return (
@@ -46,6 +48,9 @@ export default ({ error, register, changePage, verify, verified }) => {
         <Form.Input error={!!error.email} {...email} />
         <Form.Input error={!!error.confirmEmail} {...confirmEmail} />
       </Form.Group>
+      <Form.Group widths="equal">
+        <Form.Input error={!!error.code} {...code} />
+      </Form.Group>
       <Form.Field>
         <Button
           floated="right"
@@ -54,6 +59,12 @@ export default ({ error, register, changePage, verify, verified }) => {
           onClick={() => register(inputGroup)}
         >
           Register
+        </Button><Button
+          floated="right"
+          primary
+          onClick={() => register(inputGroup)}
+        >
+          (VerifyBypass)Register
         </Button>
         <Button size="mini" basic onClick={changePage}>
           Existing Account
